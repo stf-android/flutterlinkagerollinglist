@@ -43,16 +43,16 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
 
   //左侧列表测试用例，后续使用可以自定义任何List
   final List _left = const [
-    '测试用例1',
-    '测试用例2',
-    '测试用例3',
-    '测试用例4',
-    '测试用例5',
-    '测试用例6',
-    '测试用例7',
-    '测试用例8',
-    '测试用例9',
-    '测试用例10',
+    '科室1',
+    '科室2',
+    '科室3',
+    '科室4',
+    '科室5',
+    '科室6',
+    '科室7',
+    '科室8',
+    '科室9',
+    '科室10',
   ];
 
   //右侧GridView中的项目数量，后续使用可以使用项目中的list数量，这里仅作为测试
@@ -65,11 +65,11 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
   double _lastGridHeight = 0.0;
 
   int _indexLeft = 0;
-
+  String indexMsg = "";
   @override
   void initState() {
     super.initState();
-
+   indexMsg = _left[0];
     //左侧Listview的监听，目前没有用到
     _leftListController.addListener(() {});
 
@@ -79,12 +79,14 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
       if (_rightOffSetStepList.last <= _rightListController.offset) {
         setState(() {
           _indexLeft = _rightOffSetStepList.length - 1;
+          indexMsg = _left[_indexLeft];
         });
       } else {
         for (int i = 0; i < _rightOffSetStepList.length; i++) {
           if (_rightOffSetStepList[i] > _rightListController.offset + 0.1) {
             setState(() {
               _indexLeft = (i - 1 < 0 ? 0 : (i - 1));
+              indexMsg = _left[_indexLeft];
             });
             break;
           }
@@ -179,7 +181,6 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
       child: ListView.builder(
         controller: _leftListController,
         itemBuilder: (context, index) {
-
           return GestureDetector(
             child: Container(
               height: leftItemHeight,
@@ -217,6 +218,7 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
             color: Colors.white,
             child: ListView.builder(
               itemBuilder: (context, index) {
+
                 if (_left.length > index + 1) {
                   return Column(
                     children: [
@@ -425,9 +427,9 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
               width: (MediaQuery.of(context).size.width) * (3 / 4),
               height: 38,
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: const Text(
-                "11111111",
-                style: TextStyle(
+              child: Text(
+                indexMsg,
+                style: const TextStyle(
                     fontSize: 13, color: Color.fromRGBO(51, 51, 51, 1)),
               ),
             ),
