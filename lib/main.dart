@@ -20,7 +20,7 @@ const double leftItemHeight = 45; // 左边一个item的高度
 const double rightItemTitleHeight = 38; // 右边一个标题的高度
 const int leftWidgetFlex = 3; // 左边组件占据空间的比例
 const int rightWidgetFlex = 9; // 右边组件占据空间的比例
-const int rightGridViewCrossAxisCount = 3; //右侧GirdView一排数量，这里测试时为3
+const int rightGridViewCrossAxisCount = 1; //右侧GirdView一排数量，这里测试时为3
 
 
 
@@ -257,8 +257,6 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
                 ],
               );
             }else{
-
-              //最后一项特别处理，需要使用SizedBox
               return Column(
                 children: [
                   Container(
@@ -283,7 +281,7 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
                   GridView.builder(
                     padding: const EdgeInsets.all(0),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3, //每行三列
+                      crossAxisCount: rightGridViewCrossAxisCount, //每行三列
                       childAspectRatio: 1, //显示区域宽高相等
                     ),
                     physics: const NeverScrollableScrollPhysics(),
@@ -293,7 +291,7 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
                       return GestureDetector(
                         child: Container(
                           height: _rightGridItemHight,
-                          color: Colors.amber,
+                          color: Colors.blue,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -314,9 +312,67 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
                       );
                     },
                   ),
-                  SizedBox(height: _lastGridHeight,),
                 ],
               );
+              //最后一项特别处理，需要使用SizedBox
+              // return Column(
+              //   children: [
+              //     Container(
+              //       color: Colors.red,
+              //       height: rightItemTitleHeight,
+              //       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              //       child: Row(
+              //         children: [
+              //           const Expanded(
+              //             child: Divider(color: Color.fromRGBO(216, 216, 216, 1),height: 1,),
+              //           ),
+              //           Container(
+              //             child: Text(_left[index],style: const TextStyle(fontSize: 13,color: Color.fromRGBO(51, 51, 51, 1)),),
+              //             padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+              //           ),
+              //           const Expanded(
+              //             child: Divider(color: Color.fromRGBO(216, 216, 216, 1),height: 1,),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     GridView.builder(
+              //       padding: const EdgeInsets.all(0),
+              //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              //         crossAxisCount: 1, //每行三列
+              //         childAspectRatio: 1, //显示区域宽高相等
+              //       ),
+              //       physics: const NeverScrollableScrollPhysics(),
+              //       shrinkWrap: true,
+              //       itemCount: ll[index],
+              //       itemBuilder: (context, index) {
+              //         return GestureDetector(
+              //           child: Container(
+              //             height: _rightGridItemHight,
+              //             color: Colors.amber,
+              //             child: Column(
+              //               mainAxisAlignment: MainAxisAlignment.center,
+              //               children: [
+              //                 Container(
+              //                   child:const Icon(Icons.print),
+              //                   padding:const EdgeInsets.fromLTRB(0, 0, 0, 10),
+              //                 ),
+              //                 Text("测试" + index.toString()),
+              //               ],
+              //             ),
+              //             padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+              //             margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+              //           ),
+              //           behavior: HitTestBehavior.opaque,
+              //           onTap: (){
+              //
+              //           },
+              //         );
+              //       },
+              //     ),
+              //     SizedBox(height: _lastGridHeight,),
+              //   ],
+              // );
             }
           },
           itemCount: _left.length,
