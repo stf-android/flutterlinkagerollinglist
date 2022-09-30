@@ -292,7 +292,7 @@ class _LinkageRollingPageState extends State<LinkageRollingPage> {
                   return Column(
                     children: [
                       Container(
-                        color: Colors.red,
+                        color: Colors.yellow,
                         height: rightItemTitleHeight,
                         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         child: Row(
